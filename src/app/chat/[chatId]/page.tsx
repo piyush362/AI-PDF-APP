@@ -32,18 +32,18 @@ const ChatPage = async ({ params: { chatId } }: Props) => {
   const isPro = await checkSubscription();
 
   return (
-    <div className="flex max-h-screen overflow-scroll">
-      <div className="flex w-full max-h-screen overflow-scroll">
+    <div className="flex h-screen overflow-hidden">
+      <div className="flex w-full h-full overflow-hidden">
         {/* chat sidebar */}
-        <div className="flex-[1] max-w-xs">
+        <div className="flex-[1] max-w-xs h-full">
           <ChatSideBar chats={_chats} chatId={parseInt(chatId)} isPro={isPro} />
         </div>
         {/* pdf viewer */}
-        <div className="max-h-screen p-4 oveflow-scroll flex-[5]">
+        <div className="h-full flex-[5] p-4 overflow-hidden">
           <PDFViewer pdf_url={currentChat?.pdfUrl || ""} />
         </div>
         {/* chat component */}
-        <div className="flex-[3] border-l-4 border-l-slate-200">
+        <div className="flex-[3] border-l-4 border-l-slate-200 h-full overflow-hidden">
           <ChatComponent chatId={parseInt(chatId)} />
         </div>
       </div>
