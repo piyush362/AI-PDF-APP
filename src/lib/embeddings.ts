@@ -38,7 +38,7 @@ export async function getEmbeddings(text: string) {
 
     // Making the API call
     const response = await openai.createEmbedding({
-      model: "text-embedding-3-small",
+      model: "text-embedding-3-large",
       // model: "text-embedding-ada-002",
       input: cleanText,
     });
