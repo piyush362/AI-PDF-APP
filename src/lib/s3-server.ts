@@ -4,7 +4,7 @@ export async function downloadFromS3(file_key: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
       const s3 = new S3({
-        region: "ap-southeast-1",
+        region: "ap-southeast-2",
         credentials: {
           accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_KEY_ID!,
           secretAccessKey: process.env.NEXT_PUBLIC_S3_SECRET_ACCESS_KEY!,
@@ -26,6 +26,7 @@ export async function downloadFromS3(file_key: string): Promise<string> {
         file.on("open", function (fd) {
           // @ts-ignore
           obj.Body?.pipe(file).on("finish", () => {
+            console.log("🚐🔥", file_name);
             return resolve(file_name);
           });
         });

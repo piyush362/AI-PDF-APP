@@ -27,6 +27,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
   // 1. obtain the pdf -> downlaod and read from pdf
   console.log("downloading s3 into file system");
   const file_name = await downloadFromS3(fileKey);
+  console.log("DOWNLOAD🔥: ", file_name);
   if (!file_name) {
     throw new Error("could not download from s3");
   }

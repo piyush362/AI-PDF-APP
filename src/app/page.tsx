@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/ui/button";
 import { UserButton, auth } from "@clerk/nextjs";
 import Link from "next/link";
@@ -24,8 +25,9 @@ export default async function Home() {
     <div className="w-screen min-h-screen bg-gradient-to-r from-rose-100 to-teal-100">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="flex flex-col items-center text-center">
+          <img className="w-28 h-28" src="main.png" alt="main" />
           <div className="flex items-center">
-            <h1 className="mr-3 text-5xl font-semibold">Chat with any PDF</h1>
+            <h1 className="mr-3 text-2xl font-semibold">AI-PDF CHAT APPLICATION</h1>
             <UserButton afterSignOutUrl="/" />
           </div>
 
@@ -44,7 +46,7 @@ export default async function Home() {
             )}
           </div>
 
-          <p className="max-w-xl mt-1 text-lg text-slate-600">
+          <p className="max-w-xl mt-1 text-sm text-slate-600">
             Join millions of students, researchers and professionals to instantly
             answer questions and understand research with AI
           </p>

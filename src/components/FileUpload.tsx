@@ -1,5 +1,5 @@
 "use client";
-import { uploadToS3 } from "@/lib/s3";
+import { getS3Url, uploadToS3 } from "@/lib/s3";
 import { useMutation } from "@tanstack/react-query";
 import { Inbox, Loader2 } from "lucide-react";
 import React from "react";
@@ -21,6 +21,7 @@ const FileUpload = () => {
       file_key: string;
       file_name: string;
     }) => {
+      console.log("____________________________");
       const response = await axios.post("/api/create-chat", {
         file_key,
         file_name,
@@ -33,6 +34,7 @@ const FileUpload = () => {
     accept: { "application/pdf": [".pdf"] },
     maxFiles: 1,
     onDrop: async (acceptedFiles) => {
+      // console.log("✅", acceptedFiles)
       const file = acceptedFiles[0];
       if (file.size > 10 * 1024 * 1024) {
         // bigger than 10mb!
@@ -44,6 +46,8 @@ const FileUpload = () => {
         setUploading(true);
         const data = await uploadToS3(file);
         console.log("meow", data);
+        // const pdfUrl = getS3Url(data?.file_key)
+        // console.log("meow✅", pdfUrl);
         if (!data?.file_key || !data.file_name) {
           toast.error("Something went wrong");
           return;
@@ -59,12 +63,15 @@ const FileUpload = () => {
           },
         });
       } catch (error) {
+        console.log("ERROR_____")
         console.log(error);
       } finally {
         setUploading(false);
       }
     },
   });
+
+
   return (
     <div className="p-2 bg-white rounded-xl">
       <div

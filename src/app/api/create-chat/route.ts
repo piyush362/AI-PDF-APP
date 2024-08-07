@@ -7,6 +7,8 @@ import { NextResponse } from "next/server";
 
 // /api/create-chat
 export async function POST(req: Request, res: Response) {
+  console.log("_____________123_______________");
+
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
@@ -35,9 +37,9 @@ export async function POST(req: Request, res: Response) {
       { status: 200 }
     );
   } catch (error) {
-    console.error(error);
+    console.error("🔥internal server Error 1", error);
     return NextResponse.json(
-      { error: "internal server error" },
+      { error: "🔥internal server Error 2" },
       { status: 500 }
     );
   }
